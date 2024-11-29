@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -204,16 +204,19 @@
             </table>
         </div>
 
-        <button id="load-more" class="btn btn-secondary">Load More</button>
+        <button id="load-more" class="btn btn-secondary" style="display: none;">Load More</button>
     </div>
 
     <script>
         let page = 1;
+        let isLoading = false;
 
         function loadBooks(reset = false) {
             const likes = $('#likes').val();
             const reviews = $('#reviews').val();
             if (reset) page = 1;
+
+            isLoading = true;
 
             $.post('/Book/GenerateBooks', {
                 page: page,
@@ -225,7 +228,7 @@
                 data.forEach(book => {
                     const detailsButton = `<button class="btn btn-info btn-sm" onclick="toggleDetails(${book.index})">Show Details</button>`;
 
-                   let bookRow = `
+                    let bookRow = `
                         <tr>
                             <td>${book.index}</td>
                             <td>${book.isbn}</td>
@@ -248,15 +251,15 @@
                                         <p><strong>Author:</strong> ${book.author}</p>
                                         <p><strong>Publisher:</strong> ${book.publisher}</p>
                                         <ul>
-                                            ${book.reviewList && book.reviewList.length > 0 ? 
-                                                book.reviewList.map((review, index) => 
-                                                    `<li>Review ${index + 1}: ${review}</li>`
-                                                ).join('') : 
-                                                `<li>No reviews available</li>`
-                                            }
+                                            ${book.reviewList && book.reviewList.length > 0 ?
+                            book.reviewList.map((review, index) =>
+                                `<li>Review ${index + 1}: ${review}</li>`
+                            ).join('') :
+                            `<li>No reviews available</li>`
+                        }
                                         </ul>
                                     </div>
-                
+
                                     <div class="book-cover">
                                         <img src="${book.coverImage}" alt="Book Cover" />
                                         <div class="likes-info">
@@ -272,41 +275,51 @@
                 });
 
                 page++;
+                isLoading = false;
             });
         }
 
-        $('#load-books').click(() => {
-            const language = $('#language').val();
-            const seed = $('#seed').val();
-            const likes = $('#likes').val();
-            const reviews = $('#reviews').val();
-            $.post('/Book/UpdateSettings', { language, seed, likes, reviews }, () => {
-                loadBooks(true);
+        $(document).ready(() => {
+            $('#load-books').click(() => {
+                const language = $('#language').val();
+                const seed = $('#seed').val();
+                const likes = $('#likes').val();
+                const reviews = $('#reviews').val();
+                $.post('/Book/UpdateSettings', { language, seed, likes, reviews }, () => {
+                    loadBooks(true);
+                });
             });
-        });
 
-        $('#load-more').click(() => {
-            loadBooks();
-        });
+            $('#load-more').click(() => {
+                loadBooks();
+            });
 
-        $('#random-seed').click(() => {
-            $('#seed').val(Math.floor(Math.random() * 1000000));
+            $('#random-seed').click(() => {
+                $('#seed').val(Math.floor(Math.random() * 1000000));
+            });
+
+            $(window).on('scroll', () => {
+                if (
+                    !isLoading &&
+                    $(window).scrollTop() + $(window).height() >= $(document).height() - 50
+                ) {
+                    loadBooks();
+                }
+            });
+
+            const rangeInput = document.getElementById('likes');
+            const rangeValue = document.getElementById('rangeValue');
+
+            rangeInput.addEventListener('input', function () {
+                rangeValue.textContent = rangeInput.value;
+            });
+
+            loadBooks(true);
         });
 
         function toggleDetails(bookIndex) {
             $(`#details-${bookIndex}`).toggle();
         }
-
-        $(document).ready(() => {
-            loadBooks(true);
-        });
-
-        const rangeInput = document.getElementById('likes');
-        const rangeValue = document.getElementById('rangeValue');
-
-        rangeInput.addEventListener('input', function() {
-            rangeValue.textContent = rangeInput.value;
-        });
 
     </script>
 </body>
