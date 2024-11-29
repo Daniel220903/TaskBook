@@ -1,0 +1,15 @@
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\BookApp
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\appsettings.Development.json
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\appsettings.json
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\BookApp.dll
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\BookApp.deps.json
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\BookApp.runtimeconfig.json
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\BookApp.pdb
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\AutoFixture.dll
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\Bogus.dll
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\CsvHelper.dll
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\Fare.dll
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\Newtonsoft.Json.dll
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\Stripe.net.dll
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\System.Configuration.ConfigurationManager.dll
+C:\Users\dvill\source\repos\BookApp\BookApp\obj\Release\net8.0\linux-x64\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
